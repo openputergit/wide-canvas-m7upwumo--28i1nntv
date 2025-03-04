@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maruti Mediclaim Service - AI-Powered Insurance Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --primary: #0066cc;
+            --secondary: #00264d;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .chatbot-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .dark {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        .policy-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        .floating-chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="bi bi-shield-check text-4xl text-blue-600"></i>
+                <h1 class="text-2xl font-bold text-blue-600">Maruti Mediclaim</h1>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-blue-600">Home</a>
+                <a href="#" class="hover:text-blue-600">Services</a>
+                <a href="#" class="hover:text-blue-600">About</a>
+                <a href="#" class="hover:text-blue-600">Contact</a>
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-200">
+                    <i class="bi bi-moon-stars"></i>
+                </button>
+            </div>
+            <button class="md:hidden" id="mobileMenu">
+                <i class="bi bi-list text-2xl"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-600 text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">AI-Powered Insurance Solutions</h1>
+                    <p class="text-xl mb-8">Get personalized insurance recommendations using our advanced AI technology</p>
+                    <button class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition">
+                        Get Started
+                    </button>
+                </div>
+                <div class="hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40" alt="Insurance" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Insurance Recommendation Section -->
+    <section class="py-16 container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Find Your Perfect Insurance Plan</h2>
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6">
+            <form id="insuranceForm" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Age</label>
+                        <input type="number" class="w-full p-3 border rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Annual Income</label>
+                        <input type="number" class="w-full p-3 border rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Insurance Type</label>
+                        <select class="w-full p-3 border rounded-lg" required>
+                            <option>Health Insurance</option>
+                            <option>Vehicle Insurance</option>
+                            <option>Term Insurance</option>
+                            <option>Pension Plan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Coverage Amount</label>
+                        <input type="number" class="w-full p-3 border rounded-lg" required>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+                    Get AI Recommendations
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Insurance Services -->
+    <section class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Insurance Services</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 policy-card">
+                    <i class="bi bi-heart-pulse text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Health Insurance</h3>
+                    <p class="text-gray-600 mb-4">Comprehensive health coverage for you and your family</p>
+                    <button class="text-blue-600 hover:underline">Learn More →</button>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 policy-card">
+                    <i class="bi bi-car-front text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Vehicle Insurance</h3>
+                    <p class="text-gray-600 mb-4">Protect your vehicle with our comprehensive coverage</p>
+                    <button class="text-blue-600 hover:underline">Learn More →</button>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 policy-card">
+                    <i class="bi bi-shield-check text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Term Insurance</h3>
+                    <p class="text-gray-600 mb-4">Secure your family's future with term life insurance</p>
+                    <button class="text-blue-600 hover:underline">Learn More →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot -->
+    <div class="floating-chat-button">
+        <button id="chatToggle" class="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition">
+            <i class="bi bi-chat-dots text-2xl"></i>
+        </button>
+    </div>
+
+    <div id="chatbot" class="hidden fixed bottom-20 right-6 w-80 bg-white rounded-lg shadow-xl">
+        <div class="p-4 bg-blue-600 text-white rounded-t-lg flex justify-between items-center">
+            <h3 class="font-semibold">AI Assistant</h3>
+            <button id="closeChatbot" class="text-white hover:text-gray-200">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="chatbot-container p-4" id="chatMessages">
+            <div class="mb-4">
+                <div class="bg-gray-200 p-3 rounded-lg inline-block">
+                    Hello! How can I help you today?
+                </div>
+            </div>
+        </div>
+        <div class="p-4 border-t">
+            <div class="flex space-x-2">
+                <input type="text" id="chatInput" placeholder="Type your message..." 
+                    class="flex-1 p-2 border rounded-lg focus:outline-none focus:border-blue-600">
+                <button id="sendMessage" class="bg-blue-600 text-white px-4 rounded-lg hover:bg-blue-700">
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const icon = themeToggle.querySelector('i');
+            icon.classList.toggle('bi-moon-stars');
+            icon.classList.toggle('bi-sun');
+        });
+
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.addEventListener('click', () => {
+            const nav = document.querySelector('nav div.hidden');
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('block');
+        });
+
+        // Chatbot functionality
+        const chatToggle = document.getElementById('chatToggle');
+        const chatbot = document.getElementById('chatbot');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const chatMessages = document.getElementById('chatMessages');
+
+        chatToggle.addEventListener('click', () => {
+            chatbot.classList.toggle('hidden');
+        });
+
+        closeChatbot.addEventListener('click', () => {
+            chatbot.classList.add('hidden');
+        });
+
+        const appendMessage = (message, isUser = false) => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'mb-4 ' + (isUser ? 'text-right' : '');
+            messageDiv.innerHTML = `
+                <div class="${isUser ? 'bg-blue-600 text-white' : 'bg-gray-200'} p-3 rounded-lg inline-block">
+                    ${message}
+                </div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        };
+
+        const handleMessage = (message) => {
+            const responses = {
+                "hello": "Hi! How can I assist you today?",
+                "insurance": "We offer various insurance types including health, vehicle, and term insurance. What type interests you?",
+                "contact": "You can reach us at contact@marutimediclaim.com or call us at 1800-123-4567",
+                "price": "Insurance prices vary based on multiple factors. Would you like to get a personalized quote?",
+            };
+
+            let response = "I'm sorry, I don't understand. Could you please rephrase that?";
+            for (let key in responses) {
+                if (message.toLowerCase().includes(key)) {
+                    response = responses[key];
+                    break;
+                }
+            }
+            setTimeout(() => appendMessage(response), 500);
+        };
+
+        sendMessage.addEventListener('click', () => {
+            const message = chatInput.value.trim();
+            if (message) {
+                appendMessage(message, true);
+                chatInput.value = '';
+                handleMessage(message);
+            }
+        });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage.click();
+            }
+        });
+
+        // Insurance Form Handling
+        const insuranceForm = document.getElementById('insuranceForm');
+        insuranceForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you! Our AI is analyzing your information. We will contact you shortly with personalized recommendations.');
+        });
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
